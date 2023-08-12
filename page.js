@@ -47,7 +47,7 @@ const Page = {
       draw(fill, dfill)
     }
   },
-  map({ x = 0, y = 0, width = 0, height = 0, size = 40 }) {
+  display({ x = 0, y = 0, width = 0, height = 0, size = 40 }) {
     c.box({ x, y, width, height, fill: util.colors.lgray })
     c.box({ x, y, width, height, stroke: util.colors.black, lineWidth: 6 })
     Page.grid.cellSize = width / size
@@ -91,12 +91,6 @@ const Page = {
 
     mouse.left = false
     mouse.right = false
-
-    c.box({ width: Page.width * 2, height: Page.height * 2, fill: util.colors.lgray })
-    for (let i = -100; i <= 100; i++) {
-      c.box({ x: 0, y: i * 30, width: Page.width * 2, height: 2, fill: util.mixColors(util.colors.lgray, util.colors.gray, 0.1) })
-      c.box({ x: i * 30, y: 0, width: 2, height: Page.height * 2, fill: util.mixColors(util.colors.lgray, util.colors.gray, 0.1) })
-    }
   },
 }
 // Honestly idk why I even did this
