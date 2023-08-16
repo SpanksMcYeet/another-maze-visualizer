@@ -1,4 +1,4 @@
-import Page from './page.js'
+import Page from '../page.js'
 
 // CREDIT: https://gist.github.com/blixt/f17b47c62508be59987b
 const Seed = class {
