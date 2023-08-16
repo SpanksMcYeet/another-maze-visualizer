@@ -1,9 +1,9 @@
 import Canvas from './toolbox/canvas.js'
 import * as util from './toolbox/util.js'
 import { mouse, scroll } from './toolbox/event.js'
-import SeedMaze from './maze.js'
+import SeedMaze from './maze/seedMaze.js'
 
-import Page from './api/page.js'
+import Page from './page.js'
 
 const canvas = document.getElementById('canvas')
 const c = new Canvas(canvas)
@@ -144,8 +144,8 @@ let appLoop = async (newTime) => {
   c.text({ x: buttonZone.centerX, y: buttonZone.minY + textSize * 1.5, size: textSize, text: 'damocles\'s Maze Shenanigans', lineWidth: 6 })
 
   let rowLength = 1//Math.ceil(4 * ratio * ratio)
-  if (mobile)
-    rowLength = Math.ceil(0.925 * ratio * ratio)
+  //if (mobile)
+    //rowLength = Math.ceil(0.925 * ratio * ratio)
   let buttonHeight = 150 * ratio
   if (mobile)
     buttonHeight *= 0.5
