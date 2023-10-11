@@ -25,6 +25,10 @@ export const bounds = ({ x = 0, y = 0, width = 0, height = 0, mousePosition = { 
 
 export const clamp = (value, min, max) => Math.min(Math.max(value, min), max)
 
+export const randomInt = i => Math.floor(Math.random() * Math.floor(i))
+
+export const randomRange = (min, max) => Math.random() * (max - min) + min
+
 // Not used. Will be needed for debug mode
 export const sleep = ms => new Promise(r => setTimeout(r, ms))
 
@@ -72,9 +76,9 @@ export const colors = {
   mothership: '#de6fa1',
   portalmothership: '#de9dbd',
   portal4tdm: '#8e7cc3',
-  portal4tdmmaze: '#bc49da',
+  portal4tdmmaze: '#9344bb',
   siege: '#8db600',
-  sssault: '#6d9eeb',
+  assault: '#6d9eeb',
   spacetdm: '#14e682',
   tag: '#a3d193',
   soccer: '#19cbbf',
