@@ -82,35 +82,6 @@ const Canvas = class {
     }
     this.ctx.restore()
   }
-  // Not used and probably never will be
-  trapezoid({ x = 0, y = 0, width = 0, height = 0, angle = 0, aspect = 1, fill = null, stroke = null, lineWidth = 0 }) {
-    let h0 = height
-    let h1 = height
-    if (aspect > 0)
-      h0 *= aspect
-    else if (aspect < 0)
-      h1 *= -aspect
-    let r0 = Math.atan2(h0, width)
-    let r1 = Math.atan2(h1, width)
-    let l0 = Math.sqrt(width * width + h0 * h0)
-    let l1 = Math.sqrt(width * width + h1 * h1)
-
-    this.ctx.beginPath()
-    this.ctx.moveTo(x + l0 * Math.cos(angle + r0), y + l0 * Math.sin(angle + r0))
-    this.ctx.lineTo(x + l1 * Math.cos(angle + Math.PI - r1), y + l1 * Math.sin(angle + Math.PI - r1))
-    this.ctx.lineTo(x + l1 * Math.cos(angle + Math.PI + r1), y + l1 * Math.sin(angle + Math.PI + r1))
-    this.ctx.lineTo(x + l0 * Math.cos(angle - r0), y + l0 * Math.sin(angle - r0))
-    this.ctx.closePath()
-    if (stroke != null) {
-      this.ctx.lineWidth = lineWidth
-      this.ctx.strokeStyle = stroke
-      this.ctx.stroke()
-    }
-    if (fill != null) {
-      this.ctx.fillStyle = fill
-      this.ctx.fill()
-    }
-  }
   text({ x = 0, y = 0, size = 1, text = '', lineWidth = 0 }) {
     this.ctx.font = `bold ${size}px Ubuntu`
     this.ctx.textAlign = 'center'
