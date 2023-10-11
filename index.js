@@ -1,17 +1,16 @@
 import Canvas from './toolbox/canvas.js'
 import * as util from './toolbox/util.js'
 
-import SeedMaze from './maze/seedMaze.js'
-import DiggerMaze from './maze/diggerMaze.js'
-import DiggerMazeV2 from './maze/diggerMaze-2.js'
-import NoiseMaze from './maze/noiseMaze.js'
+import SeedMaze from './maze/seedmaze.js'
+import DiggerMaze from './maze/diggermaze.js'
+import DiggerMazeV2 from './maze/diggermaze2.js'
+import NoiseMaze from './maze/noisemaze.js'
+import QuadTree from './toolbox/quadtree.js'
 
 import Page from './page.js'
 
 const canvas = document.getElementById('canvas')
 const c = new Canvas(canvas)
-
-import QuadTree from './toolbox/quadtree.js'
 
 // Pregenerate a maze
 let maze = new SeedMaze({
