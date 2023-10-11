@@ -34,7 +34,7 @@ const Page = {
       c.box({ x, y: y + (height * 0.3), width, height: height * 0.4, fill: fill2, lineWidth })
       c.box({ x, y, width, height, stroke, lineWidth })
       if (text != null)
-        c.text({ x: x, y: y + width * 0.1 * 0.25, size: width * 0.1 * textSize, text: text, lineWidth: 8 })
+        c.text({ x: x, y: y + width * 0.1 * 0.25, size: Math.abs(width - height) * 0.075 * textSize, text: text, lineWidth: 8 })
     }
     
     let dfill = util.mixColors(fill, util.colors.black, 0.15)
@@ -47,7 +47,7 @@ const Page = {
       draw(fill, dfill)
     }
   },
-  display({ x = 0, y = 0, width = 0, height = 0, size = 40 }) {
+  display({ x = 0, y = 0, width = 0, height = 0, size = 32 }) {
     c.box({ x, y, width, height, fill: util.colors.lgray })
     c.box({ x, y, width, height, stroke: util.colors.black, lineWidth: 6 })
     Page.grid.cellSize = width / size
@@ -64,6 +64,18 @@ const Page = {
       case 'wall':
         fill = util.colors.gray
         stroke = util.mixColors(util.colors.gray, util.colors.black, 0.65)
+        break
+      case 'pocket':
+        fill = util.colors.red
+        stroke = util.mixColors(util.colors.red, util.colors.black, 0.65)
+        break
+      case 'boundary':
+        fill = util.colors.black
+        stroke = util.colors.white
+        break
+      case 'point':
+        fill = util.colors.white
+        stroke = util.colors.white
         break
       // Will add more shit here in the future like uhhhh idk debug related things
     }
