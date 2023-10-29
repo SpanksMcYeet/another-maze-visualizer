@@ -61,7 +61,7 @@ export const colors = {
   cherry: '#ff0000',
   redorang: '#FF5700',
   tangerine: '#f96855',
-  
+  blueviolet: '#6953ac',
 
   ffa: '#e44d2e',
   tdm2: '#007ba7',
