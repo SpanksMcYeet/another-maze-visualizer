@@ -6,6 +6,7 @@ import DiggerMaze from './maze/diggermaze.js'
 import DiggerMazeV2 from './maze/diggermaze2.js'
 import NoiseMaze from './maze/noisemaze.js'
 import QuadTree from './toolbox/quadtree.js'
+import QuadTreeCave from './maze/quadtreecave.js'
 
 import Page from './page.js'
 
@@ -52,7 +53,6 @@ let appLoop = async (newTime) => {
       return Page.height - padding * 2
     },
     get minX() {
-      if (mobile) return padding
       return padding
     },
     get minY() {
@@ -80,7 +80,6 @@ let appLoop = async (newTime) => {
       return Page.centerX + padding
     },
     get minY() {
-      if (mobile) return padding
       return padding
     },
     get centerX() {
@@ -201,9 +200,20 @@ let appLoop = async (newTime) => {
       })
       maze.init()
     }
-
-    
-  }, {
+  }, /*{
+    color: util.colors.blueviolet,
+    name: 'Experimental Maze 3',
+    size: 1,
+    run() {
+      maze = new NoiseMaze({
+        width: 32,
+        height: 32,
+        type: 'experiment3',
+        fill: true,
+      })
+      maze.init()
+    }
+  },*/ {
     color: util.colors.domination,
     name: 'Quantized Maze',
     size: 1,
@@ -254,32 +264,55 @@ let appLoop = async (newTime) => {
     }
   }, {
     color: util.colors.siege,//util.mixColors(util.colors.gray, util.colors.black, 0.4),
-    name: 'QuadTree',
+    name: 'QuadTree (Not a maze)',
     size: 1,
-    // TODO: Import the code for this
     run() {
       maze = new QuadTree({
         x: 0,
         y: 0,
-        width: 128,
-        height: 128,
+        width: 256,
+        height: 256,
         capacity: 4,
       })
       let used = new Set
       for (let i = 0; i < 64; i++) {
         while (true != false) {
-          let x = util.randomInt(128)
-          let y = util.randomInt(128)
-          let key = `${x},${y}`;
-          if (used.has(key)) continue;
-          used.add(key);
+          let x = util.randomInt(256)
+          let y = util.randomInt(256)
+          let key = `${x},${y}`
+          if (used.has(key)) continue
+          used.add(key)
           maze.insert({ x, y })
           break
         }
       }
-      console.log(maze)
-    },
-  }]
+    }, 
+  }, {
+    color: util.colors.tag,
+    name: 'Quad Tree Cave (WIP)',
+    size: 1,
+    run() {
+      maze = new QuadTreeCave({ 
+        width: 64, 
+        height: 64,
+        fill: true,
+      })
+      maze.init()
+    }
+  }, {
+  color: util.colors.spacetdm,
+  name: 'Marble Maze',
+  size: 1,
+  run() {
+    maze = new NoiseMaze({
+      width: 32,
+      height: 32,
+      type: 'marble',
+      fill: true,
+    })
+    maze.init()
+  }
+}]
 
   
   let ratio = Math.abs(buttonZone.width - buttonZone.height)
@@ -301,7 +334,7 @@ let appLoop = async (newTime) => {
     let x = i % rowLength
     if (i % rowLength === 0)
       y++
-    Page.box({
+    Page.button({
       x: buttonZone.minX + padding + buttonWidth * 0.5 + buttonWidth * x + padding * x,
       y: buttonZone.minY + textSize * 2 + buttonHeight * 0.5 + buttonHeight * y + padding * y + padding,
       width: buttonWidth,
